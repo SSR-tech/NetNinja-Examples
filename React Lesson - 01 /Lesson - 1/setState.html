@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <title>React</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        state = {
+          name: "sai shri ram",
+          Age: 21,
+        };
+
+        handleClick = e => {
+          //console.log(e.target);
+          this.setState({
+            name: "SSR",
+            Age: 22,
+          });
+          console.log(this.state); // the context of the this key word will be lost here.
+        };
+
+        handleMouseOver = e => {
+          console.log(e.target, e.pageX);
+        };
+
+        handleCopy = e => {
+          console.log("Try being original for once");
+        };
+
+        render() {
+          return (
+            <div className="app-content">
+              <h1>Hello World, to REACT</h1>
+              <p>
+                My name is {this.state.name} and I'm {this.state.Age} years old.
+              </p>
+              <button onClick={this.handleClick}>Click Me</button>
+              <button onMouseOver={this.handleMouseOver}>Hover Me</button>
+              <p onCopy={this.handleCopy}>What we think we become</p>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
+  </body>
+</html>
